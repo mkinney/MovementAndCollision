@@ -17,7 +17,7 @@ if (moveX == 0) {
 }
 
 
-// collision checks
+// collision checks with wall
 // horizontal
 if (moveX != 0) {
 	// Note: It is subtle, but the obj_wall below means all

@@ -1,0 +1,1 @@
+path_start(path_enemy, 10, path_action_continue, true);
