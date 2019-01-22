@@ -20,6 +20,8 @@ if (moveX == 0) {
 // collision checks
 // horizontal
 if (moveX != 0) {
+	// Note: It is subtle, but the obj_wall below means all
+	// "instances" of obj_wall.
 	if (place_meeting(x + moveX, y, obj_wall)) {
 		repeat (abs(moveX)) {
 			if (! place_meeting(x + sign(moveX), y, obj_wall)) {
@@ -46,6 +48,15 @@ if (moveY != 0) {
 	}
 }
 
-// apply movement
-x += moveX
-y += moveY
+
+// apply movement ensuring we cannot move out of the room
+var tmp_x = x + moveX
+var tmp_y = y + moveY
+
+// Note: This assumes "middle center" for obj_player's sprite
+if ((tmp_x - (sprite_width / 2) >= 0) && (tmp_x <= window_get_width() - (sprite_width / 2))) {
+	x += moveX
+}
+if ((tmp_y - (sprite_height / 2) >= 0) && (tmp_y <= window_get_height() - (sprite_height / 2))) {
+	y += moveY
+}
